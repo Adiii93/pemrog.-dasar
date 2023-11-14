@@ -1,0 +1,111 @@
+print("= "*20)
+print("\tjasa travel sidosugeh")
+print("= "*20)
+
+templateDaftar = """
+
+== Solo(s) = Rp. 200.000 ==
+== Jakarta(j) = Rp. 300.000 == 
+== Yogyakarta(y) = Rp. 450.000 == 
+== Bali(b) = Rp. 755.000 ==
+== Lombok(l) = Rp. 1.000.000 ==
+
+"""
+print(templateDaftar)
+
+tujuan = input("Masukkan tujuan anda dengan codenya(jika jakarta maka ketik j) : ")
+
+harga = 0
+voucherState = 0
+premiumTujuan = ["s","j","y"]
+tujuanString = ""
+templatePremium = "Selamat anda mendapatkan tas koper special"
+
+if tujuan == "j" : 
+    harga = 300000
+    tujuanString = "jakarta"
+elif tujuan == "s" : 
+    harga = 200000
+    tujuanString = "Solo"
+elif tujuan == "y" : 
+    harga = 450000
+    tujuanString = "Yogyakarta"
+elif tujuan == "b" : 
+    harga = 755000
+    tujuanString = "Bali"
+elif tujuan == "l" : 
+    harga = 1000000
+    tujuanString = "Lombok"
+else : 
+    print("Tolong masukkan tujuan yang benar")
+
+# jumlahTiket = 10
+jumlahTiket = int(input("Berapa jumlah tiket yang anda ingin beli : "))
+
+# voucher = "y"
+voucher = input("apakah anda mempunyai voucher ? (y/n) : ")
+
+if voucher == "y" :
+    print("karena anda mempunyai kode voucher maka anda berhak mendapat diskon Rp.100.000")
+    voucherState = 100000
+elif voucher == "n" :
+    print("anda tidak mempunyai voucher")
+else :
+    print("Saya menganggap anda tidak mempunyai kode voucher")
+    
+TotalHarga = round((harga * jumlahTiket) - voucherState)
+if tujuan in premiumTujuan :
+    if TotalHarga >= 2000000 :
+        diskon = TotalHarga * 0.03
+        TotalHarga -= diskon
+        templatePremium =f"""
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+        =    Tujuan anda adalah = {tujuanString}                =
+             Anda membeli tiket sebanyak = {jumlahTiket}
+        =    Jumlah total harga lebih dari 2 juta diskon 3%
+             Anda mendapat bonus tas koper limited edition      =
+        =    Jumlah total yang harus dibayar = Rp.{round(TotalHarga):,}                                                 
+    
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =                                                    
+        """
+        print(templatePremium)
+    else : 
+        templatePremium =f"""
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+        =    Tujuan anda adalah = {tujuanString}                =
+             Anda membeli tiket sebanyak = {jumlahTiket}
+        =                                                       =  
+             Anda mendapat bonus tas koper limited edition      
+        =    Jumlah total yang harus dibayar = Rp.{round(TotalHarga):,}     =                                            
+    
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =                                                    
+        """
+        print(templatePremium)
+elif tujuan not in premiumTujuan :
+     if TotalHarga >= 2000000 :
+        diskon = TotalHarga * 0.03
+        TotalHarga -= diskon
+        templateNotPremium = f"""
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+     
+        =    Tujuan anda adalah = {tujuanString}                =
+             Anda membeli tiket sebanyak = {jumlahTiket}
+        =    Jumlah total harga lebih dari 2 juta diskon 3%     =
+             Jumlah total yang harus dibayar = Rp.{round(TotalHarga):,}                                                 
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  
+        """
+        print(templateNotPremium)
+     else : 
+         
+         templateNotPremium = f"""
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+        =    Tujuan anda adalah = {tujuanString}                =
+             Anda membeli tiket sebanyak = {jumlahTiket}
+        =                                                       =
+              Jumlah total yang harus dibayar = Rp.{round(TotalHarga):,}                                                 
+        = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  
+        """
+         print(templateNotPremium)
